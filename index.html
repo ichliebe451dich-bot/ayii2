@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ayi</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+background:linear-gradient(to bottom,#000814,#001d3d);
+position:relative;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:blink 2s infinite alternate;
+}
+
+@keyframes blink{
+from{
+opacity:.2;
+}
+to{
+opacity:1;
+}
+}
+
+
+#moon{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:180px;
+height:180px;
+border-radius:50%;
+background:#fffbe6;
+box-shadow:
+0 0 40px white,
+0 0 80px white;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+font-size:28px;
+font-weight:bold;
+color:#555;
+transition:.4s;
+}
+
+#moon:hover{
+transform:translate(-50%,-50%) scale(1.05);
+}
+
+#question{
+display:none;
+position:absolute;
+top:65%;
+left:50%;
+transform:translateX(-50%);
+text-align:center;
+color:white;
+}
+
+button{
+padding:12px 25px;
+margin:15px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:18px;
+transition:.3s;
+}
+
+#yes{
+background:pink;
+}
+
+#no{
+background:white;
+position:absolute;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="moon">
+For Ayi
+</div>
+
+
+<div id="question">
+
+<h1>Will u be my gf?</h1>
+
+<button id="yes">Yes</button>
+<button id="no">No</button>
+
+</div>
+
+
+<audio id="song" src="lagu.mp3"></audio>
+
+
+<script>
+
+
+for(let i=0;i<300;i++){
+
+let star=document.createElement('div');
+
+star.className='star';
+
+star.style.left=Math.random()*100+'vw';
+star.style.top=Math.random()*100+'vh';
+
+star.style.animationDelay=Math.random()*3+'s';
+
+document.body.appendChild(star);
+
+}
+
+
+
+const moon=document.getElementById("moon");
+const q=document.getElementById("question");
+const song=document.getElementById("song");
+
+moon.onclick=()=>{
+
+song.play();
+
+moon.style.display="none";
+
+q.style.display="block";
+
+}
+
+
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",()=>{
+
+let x=Math.random()*(window.innerWidth-100);
+
+let y=Math.random()*(window.innerHeight-100);
+
+no.style.left=x+"px";
+no.style.top=y+"px";
+
+});
+
+
+
+
+document.getElementById("yes").onclick=()=>{
+
+confetti({
+particleCount:300,
+spread:180,
+origin:{y:0.6}
+});
+
+
+document.querySelector("h1").innerHTML=
+"YAYYY 💖";
+
+};
+
+
+</script>
+
+</body>
+</html>
